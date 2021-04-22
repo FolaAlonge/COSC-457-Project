@@ -171,7 +171,10 @@ public class StudentInfo {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				studentInfoFrame.setVisible(false);
-				PickHousingOption.generateHousingOptionPage(studentInfoFrame);
+				Student student = new Student(fNameInput.getText(), lNameInput.getText(), ssnInput.getText(), creditsInput.getText(), studentIDInput.getText(), emailInput.getText(), phoneInput.getText(), streetInput.getText(), cityInput.getText(), stateInput.getText(), zipInput.getText());
+//				Student student = new Student();
+				//System.out.print(student.firstName);
+				PickHousingOption.generateHousingOptionPage(studentInfoFrame, student);
 			}
         });
 	}

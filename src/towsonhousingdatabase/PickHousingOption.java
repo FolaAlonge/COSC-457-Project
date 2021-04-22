@@ -10,7 +10,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class PickHousingOption {
-	static void generateHousingOptionPage(JFrame studentInfoFrame) {
+	static void generateHousingOptionPage(JFrame studentInfoFrame, Student student) {
 		System.out.println("You made it to the option page");
 		
 		JFrame housingOptionFrame = new JFrame("Pick Housing Option");
@@ -24,11 +24,11 @@ public class PickHousingOption {
 		housingOptionFrame.add(panel);
 		
 		
-		setUpPage(studentInfoFrame, housingOptionFrame, panel);
+		setUpPage(studentInfoFrame, housingOptionFrame, panel, student);
 		housingOptionFrame.setVisible(true);
 	}
 	
-	public static void setUpPage(JFrame studentInfoFrame, JFrame housingOptionFrame, JPanel panel) {
+	public static void setUpPage(JFrame studentInfoFrame, JFrame housingOptionFrame, JPanel panel, Student student) {
 		panel.setLayout(null);
 
 		// Creating JLabel
@@ -58,7 +58,7 @@ public class PickHousingOption {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				housingOptionFrame.setVisible(false);
-				ResidentHall.generateResidentHallPage(housingOptionFrame);
+				ResidentHall.generateResidentHallPage(housingOptionFrame, student);
 			}
         });
         
@@ -71,7 +71,7 @@ public class PickHousingOption {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				housingOptionFrame.setVisible(false);
-				Apartment.generateApartmentPage(housingOptionFrame);
+				Apartment.generateApartmentPage(housingOptionFrame, student);
 			}
         });
 	}

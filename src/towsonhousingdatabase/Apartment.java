@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Apartment {
-	static void generateApartmentPage(JFrame housingOptionFrame) {
+	static void generateApartmentPage(JFrame housingOptionFrame, Student student) {
 System.out.println("You made it to the option page");
 		
 		JFrame apartmentFrame = new JFrame("Resident Hall");
@@ -24,10 +24,10 @@ System.out.println("You made it to the option page");
 		apartmentFrame.add(panel);
 		
 		
-		setUpPage(apartmentFrame, housingOptionFrame, panel);
+		setUpPage(apartmentFrame, housingOptionFrame, panel, student);
 		apartmentFrame.setVisible(true);
 	}
-	public static void setUpPage(JFrame apartmentFrame, JFrame housingOptionFrame, JPanel panel) {
+	public static void setUpPage(JFrame apartmentFrame, JFrame housingOptionFrame, JPanel panel, Student student) {
 		panel.setLayout(null);
 
 		
@@ -54,7 +54,7 @@ System.out.println("You made it to the option page");
         panel.add(roomTypeLabel);
         
         // Creating the input for Hall options
-        String roomType[] = {"2 Bed Price: $5,300", "4 Bed Price: $5,120"};
+        String roomType[] = {"2 Bed", "4 Bed"};
         
         JComboBox roomTypeDropdown = new JComboBox(roomType);
         roomTypeDropdown.setBounds(250,150,175,25);
@@ -106,8 +106,12 @@ System.out.println("You made it to the option page");
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				student.setApartmentOption(apartmentDropdown.getSelectedItem());
+				student.setRoomType(roomTypeDropdown.getSelectedItem());
+				student.setParking(parkingDropdown.getSelectedItem());
+				student.setMealPlan(mealPlanDropdown.getSelectedItem());
 				apartmentFrame.setVisible(false);
-				ConfirmHousingPage.generateConfirmHousingPage(apartmentFrame);
+				ConfirmHousingPage.generateConfirmHousingPage(apartmentFrame, student);
 			}
 	    });
 	}

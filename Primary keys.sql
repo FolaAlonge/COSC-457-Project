@@ -36,9 +36,6 @@ add constraint PK_spot_num primary key (spot_num);
 alter table apart_parking
 add constraint PK_lot_id primary key (lot_id);
 
-alter table apart_parking
-add constraint PK_spot_num primary key (spot_num);
-
 alter table apart_meal_plan
 add constraint PK_plan_id primary key (plan_id);
 

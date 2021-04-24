@@ -1,118 +1,123 @@
 CREATE DATABASE TUHousing;
 USE TUHousing;
-CREATE TABLE TUH_user(Fname char(20),
+CREATE TABLE TUH_USER(Fname char(20),
 					Lname char(20),
-                    email char(20),
-                    phone int,
-                    Ssn int,
-                    Street_address char(30),
-                    zip int,
-                    state char(2),
+                    Email varchar(30),
+                    Phone_num char(16),
+                    Ssn char(9),
+                    Street_address varchar(30),
+                    City char(15),
+                    Zip char(6),
+                    State char(2),
 					PRIMARY KEY(Ssn)	
 );
 
-CREATE TABLE Student(Num_of_courses int,
-					credits int,
-                    Student_id int,
-                    tu_Status char,
-                    Lease_num int,
-                    Ssn int,
-                    Plan_id int,
-                    Permit_id int,
-                    Want_parking bool,
-                    PRIMARY KEY (Student_id),
-					UNIQUE (Lease_num),
-                    FOREIGN KEY(Ssn) REFERENCES TUH_user(Ssn),
-                    FOREIGN KEY (lease_num) REFERENCES lease(lease_num),
-                    FOREIGN KEY (Plan_id) REFERENCES meal_plan(Plan_id),
-                    FOREIGN KEY (Permit_id) REFERENCES parking(Permit_id)
-);
-                    
-CREATE TABLE TU_Admin(
-	id int, 
-	Username char(20),
-    Passw char(20),
-	tu_position char(15),
-    Ssn int,
-    PRIMARY KEY(id),
-    FOREIGN KEY (Ssn) REFERENCES TUH_user(Ssn)
-    );
-
-CREATE TABLE lease(length char(10),
-				   lease_date DATE,
-				   lease_num int NOT NULL AUTO_INCREMENT,
-                   Housing_num int,
-                   Bed_id char(6),
-                   PRIMARY KEY(lease_num),
-				   FOREIGN KEY (Housing_num) REFERENCES housing(housing_num),
-                   FOREIGN KEY (Bed_id) REFERENCES hall_bed(Bed_id),
-                   FOREIGN KEY (Bed_id) REFERENCES apart_bed(Bed_id)
-                   );
-                   
-CREATE TABLE housing(Housing_num int,
-				   Manager char(5),
+CREATE TABLE HOUSING(Housing_num int,
+				   Manager char(20),
 				   School_year char(10),
-                   Address char(15),
+                   Address char(20),
+                   City char(15),
                    Zip int,
                    State char(2),
-                   City char(15),
                    PRIMARY KEY (Housing_num)
                    );
-
-
-CREATE TABLE Resident_hall(
-				   Price double(5, 2),
+                   
+                   CREATE TABLE RESIDENT_HALL(
 				   Hall_num int,
-                   Phone_num char(15),
+                   Phone_num char(16),
                    Num_of_rooms int,
                    Resident_hall_name char(15),
                    PRIMARY KEY(Hall_num),
-                   FOREIGN KEY (Hall_num) REFERENCES housing(housing_num)
+                   FOREIGN KEY (Hall_num) REFERENCES HOUSING(Housing_num)
                    );
 
-CREATE TABLE hall_bed(Hall_floor int,
+CREATE TABLE HALL_BED(Hall_floor int,
 				   Room_num int,
+                   Price int,
 				   Num_of_beds int,
                    Hall_num int,
-                   Bed_id char(6),
+                   Bed_id char(9),
                    PRIMARY KEY(Bed_id),
-                   FOREIGN KEY (Hall_num) REFERENCES Resident_hall(Hall_num)
+                   FOREIGN KEY (Hall_num) REFERENCES RESIDENT_HALL(Hall_num)
                    );
 
-CREATE TABLE apartment(
-				   Price double(4, 2),
+CREATE TABLE APARTMENT(
 				   Apart_num int,
-                   Phone_num char(15),
+                   Phone_num char(16),
+                   Num_of_rooms int,
                    Apartment_name char(15),
                    PRIMARY KEY(Apart_num),
-                   FOREIGN KEY (Apart_num) REFERENCES housing(housing_num)
+                   FOREIGN KEY (Apart_num) REFERENCES HOUSING(Housing_num)
                    );
                    
-CREATE TABLE apart_bed(Apart_floor int,
+CREATE TABLE APART_BED(Apart_floor int,
 				   Room_num int,
+                   Price int,
 				   Num_of_beds int,
                    Num_of_baths int,
                    Apart_num int,
-                   Bed_id char(6),
+                   Bed_id char(9),
                    PRIMARY KEY(Bed_id),
-                   FOREIGN KEY (Apart_num) REFERENCES Resident_hall(Apart_num)
+                   FOREIGN KEY (Apart_num) REFERENCES APARTMENT(Apart_num)
                    );
+                   
+                                      
 
                    
-CREATE TABLE parking(Car_model char(15),
-				   Car_color int,
-				   Permit_id int,
-                   PRIMARY KEY (Permit_id),
-                   FOREIGN KEY (Permit_id) REFERENCES Student(Permit_id)
-                   );
-                   
-CREATE TABLE meal_plan(Price double(4, 2),
+CREATE TABLE MEAL_PLAN(Price int,
 				   Plan_id int,
-                   Meal_name char(10),
-                   PRIMARY KEY(Plan_id),
-                   FOREIGN KEY(Plan_id) REFERENCES Student(Plan_id)
+                   Meal_name char(25),
+                   PRIMARY KEY(Plan_id)
                    );
+
+CREATE TABLE LEASE(Length char(14),
+				   Lease_date DATE,
+				   Lease_num int NOT NULL AUTO_INCREMENT,
+                   Housing_num int,
+                   Bed_id char(9),
+                   PRIMARY KEY(Lease_num),
+				   FOREIGN KEY (Housing_num) REFERENCES HOUSING(Housing_num)
                    
+                   );
+
+CREATE TABLE STUDENT(Num_of_courses int,
+					Credits int,
+                    Student_id char(7),
+                    Tu_Status char(10),
+                    Lease_num int NOT NULL AUTO_INCREMENT,
+                    Ssn char(9),
+                    Plan_id int,
+                    Want_parking bool,
+                    Want_meal_plan bool,
+                    PRIMARY KEY (Student_id),
+                    FOREIGN KEY(Ssn) REFERENCES TUH_USER(Ssn),
+                    FOREIGN KEY (Lease_num) REFERENCES LEASE(Lease_num),
+                    FOREIGN KEY(Plan_id) REFERENCES MEAL_PLAN(Plan_id)
+);
+
+CREATE TABLE PARKING(Car_model char(15),
+				   Car_color char(10),
+				   Permit_id int NOT NULL AUTO_INCREMENT,
+                   Plate_num char(7),
+                   Student_id char(7),
+                   PRIMARY KEY (Permit_id),
+                   FOREIGN KEY (Student_id) REFERENCES STUDENT(Student_id)
+                   );
+                    
+CREATE TABLE TU_ADMIN(
+	Id int NOT NULL AUTO_INCREMENT, 
+	Username char(20),
+    Passw char(20),
+	Tu_position char(15),
+    Ssn char(9),
+    PRIMARY KEY(Id),
+    FOREIGN KEY (Ssn) REFERENCES TUH_USER(Ssn)
+    );
+
+
+                   
+
+
 
                    
 

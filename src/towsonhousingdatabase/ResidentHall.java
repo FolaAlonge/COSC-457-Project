@@ -59,29 +59,17 @@ public class ResidentHall {
         JComboBox hallDropdown = new JComboBox(halls);
         hallDropdown.setBounds(250,150,175,25);
         panel.add(hallDropdown);
-               
-     // Creating Label for parking
-        JLabel parkingLabel = new JLabel("Parking:");
-        parkingLabel.setBounds(140,200,100,25);
-        panel.add(parkingLabel);
-        
-     // Creating the input for parking
-        String parking[] = {"Yes", "No"};
-        
-        JComboBox parkingDropdown = new JComboBox(parking);
-        parkingDropdown.setBounds(250,200,175,25);
-        panel.add(parkingDropdown);
         
      // Creating Label for meal plan
-        JLabel mealPlanLabel = new JLabel("Meal Plan:");
-        mealPlanLabel.setBounds(140,250,100,25);
+        JLabel mealPlanLabel = new JLabel("Meal Plans:");
+        mealPlanLabel.setBounds(140,200,100,25);
         panel.add(mealPlanLabel);
         
      // Creating the input for meal plan
         String mealPlan[] = {"10 meals per Week", "14 meals per Week", "19 meals per Week", "21 meals per Week", "Unlimited meals per Week"};
         
         JComboBox mealPlanDropdown = new JComboBox(mealPlan);
-        mealPlanDropdown.setBounds(250,250,175,25);
+        mealPlanDropdown.setBounds(250,200,175,25);
         panel.add(mealPlanDropdown);
 	
 		// Creating back button
@@ -99,7 +87,7 @@ public class ResidentHall {
 	    
 	    
 	 // Creating confirm information button
-	    JButton confirmHousingPageButton = new JButton("Continue to Confirmation Page");
+	    JButton confirmHousingPageButton = new JButton("Continue to Parking Page");
 	    confirmHousingPageButton.setBounds(100, 300, 300, 50);
 	    panel.add(confirmHousingPageButton);
 	    confirmHousingPageButton.addActionListener(new ActionListener() {
@@ -108,10 +96,9 @@ public class ResidentHall {
 			public void actionPerformed(ActionEvent e) {
 				
 				student.setResidentHallOption(hallDropdown.getSelectedItem());
-				student.setParking(parkingDropdown.getSelectedItem());
 				student.setMealPlan(mealPlanDropdown.getSelectedItem());
 				residentHallFrame.setVisible(false);
-				ConfirmHousingPage.generateConfirmHousingPage(residentHallFrame, student);
+				Parking.generateParkingPage(residentHallFrame, student);
 			}
 	    });
 	}

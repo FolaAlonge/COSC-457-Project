@@ -70,14 +70,14 @@ public class ConfirmHousingPage {
              panel.add(housingLocation);
                     
              // Creating Label for room type
-             JLabel roomTypeLabel = new JLabel("Room Type:");
-             roomTypeLabel.setBounds(140,250,100,25);
-             panel.add(roomTypeLabel);
+             JLabel bedLabel = new JLabel("Bed Space:");
+             bedLabel.setBounds(140,250,100,25);
+             panel.add(bedLabel);
              
              // Creating room type
-             JLabel roomType = new JLabel(student.roomType);
-             roomType.setBounds(250,250,175,25);
-             panel.add(roomType);
+             JLabel bedSpace = new JLabel(student.bed);
+             bedSpace.setBounds(250,250,175,25);
+             panel.add(bedSpace);
         }
         
         if (student.residentHall) {

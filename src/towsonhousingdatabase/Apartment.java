@@ -46,33 +46,32 @@ System.out.println("You made it to the option page");
         JComboBox apartmentDropdown = new JComboBox(apartments);
         apartmentDropdown.setBounds(250,100,175,25);
         panel.add(apartmentDropdown);
-
-		
-		// Creating Label for Hall options
-        JLabel roomTypeLabel = new JLabel("Room Type");
-        roomTypeLabel.setBounds(120,150,125,25);
-        panel.add(roomTypeLabel);
-        
-        // Creating the input for Hall options
-        String roomType[] = {"2 Bed", "4 Bed"};
-        
-        JComboBox roomTypeDropdown = new JComboBox(roomType);
-        roomTypeDropdown.setBounds(250,150,175,25);
-        panel.add(roomTypeDropdown);
-               
-     // Creating Label for parking
-        JLabel parkingLabel = new JLabel("Parking:");
-        parkingLabel.setBounds(140,200,100,25);
-        panel.add(parkingLabel);
-        
-     // Creating the input for parking
-        String parking[] = {"Yes", "No"};
-        
-        JComboBox parkingDropdown = new JComboBox(parking);
-        parkingDropdown.setBounds(250,200,175,25);
-        panel.add(parkingDropdown);
         
      // Creating Label for meal plan
+        JLabel floorLabel = new JLabel("Floor");
+        floorLabel.setBounds(140,150,100,25);
+        panel.add(floorLabel);
+        
+     // Creating the input for meal plan
+        String floors[] = {"1", "2", "3", "4", "5"};
+        
+        JComboBox floorDropdown = new JComboBox(floors);
+        floorDropdown.setBounds(250,150,175,25);
+        panel.add(floorDropdown);
+        
+     // Creating Label for meal plan
+        JLabel bedLabel = new JLabel("Bed Space:");
+        bedLabel.setBounds(140,200,100,25);
+        panel.add(bedLabel);
+        
+     // Creating the input for meal plan
+        String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
+        
+        JComboBox bedDropdown = new JComboBox(beds);
+        bedDropdown.setBounds(250,200,175,25);
+        panel.add(bedDropdown);
+        
+        // Creating Label for meal plan
         JLabel mealPlanLabel = new JLabel("Meal Plan:");
         mealPlanLabel.setBounds(140,250,100,25);
         panel.add(mealPlanLabel);
@@ -99,19 +98,19 @@ System.out.println("You made it to the option page");
 	    
 	    
 	 // Creating confirm information button
-	    JButton confirmHousingPageButton = new JButton("Continue to Confirmation Page");
-	    confirmHousingPageButton.setBounds(100, 300, 300, 50);
-	    panel.add(confirmHousingPageButton);
-	    confirmHousingPageButton.addActionListener(new ActionListener() {
+	    JButton continueToParkingButton = new JButton("Continue to Parking");
+	    continueToParkingButton.setBounds(100, 300, 300, 50);
+	    panel.add(continueToParkingButton);
+	    continueToParkingButton.addActionListener(new ActionListener() {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				student.setApartmentOption(apartmentDropdown.getSelectedItem());
-				student.setRoomType(roomTypeDropdown.getSelectedItem());
-				student.setParking(parkingDropdown.getSelectedItem());
 				student.setMealPlan(mealPlanDropdown.getSelectedItem());
+				student.setBed(bedDropdown.getSelectedItem());
+				student.setFloor(floorDropdown.getSelectedItem());
 				apartmentFrame.setVisible(false);
-				ConfirmHousingPage.generateConfirmHousingPage(apartmentFrame, student);
+				Parking.generateParkingPage(apartmentFrame, student);
 			}
 	    });
 	}

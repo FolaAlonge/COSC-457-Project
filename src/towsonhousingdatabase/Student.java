@@ -14,12 +14,15 @@ public class Student {
 	public String city = "";
 	public String state = "";
 	public int zip = 0;
+	public String floor = "";
+	public String bed = "";
+	public String vehicleModel = "";
+	public String vehicleColor = "";
+	public String plateNumber = "";
 	public boolean residentHall = false;
 	public String residentHallLocation = "";
 	public boolean apartment = false;
 	public String apartmentLocation = "";
-	public boolean hasRoomType = false;
-	public String roomType = "";
 	public boolean hasParking = false;
 	public String parking = "No";
 	public boolean hasMealPlan = false;
@@ -47,7 +50,6 @@ public class Student {
 	public void setResidentHallOption(Object object) {
 		this.residentHall = true;
 		this.apartment = false;
-		this.hasRoomType = false;
 		this.residentHallLocation = (String) object;
 	}
 	
@@ -77,9 +79,16 @@ public class Student {
 		this.apartment = true;
 		this.apartmentLocation = (String) object;
 	}
+	public void setFloor(Object object) {
+		this.floor = (String) object;
+	}
 	
-	public void setRoomType(Object object) {
-		this.hasRoomType = true;
-		this.roomType = (String) object;
+	public void setBed(Object object) {
+		this.bed = (String) object;
+	}
+	public void setVehicleInfo(String model, String color, String number) {
+		this.vehicleModel = (String) model;
+		this.vehicleColor = (String) color;
+		this.plateNumber = (String) number;
 	}
 }

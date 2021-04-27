@@ -1,6 +1,11 @@
 package towsonhousingdatabase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -27,13 +32,8 @@ public class ConfirmHousingPage {
 		confirmHousingFrame.setVisible(true);
 	}
 	
-	public static void setUpPage(JFrame confirmHousingFrame, JFrame residentHallFrame, JPanel panel, Student student) {
+	public static void setUpPage(JFrame confirmHousingFrame, JFrame residentHallFrame, JPanel panel, Student student)  {
 		panel.setLayout(null);
-		
-		int addToRow = 0;
-		if (student.residentHall) {
-			addToRow -= 50;
-		}
 		
 		// Creating Label for Resident Hall
         JLabel label = new JLabel("Confirm Housing Page");
@@ -93,27 +93,38 @@ public class ConfirmHousingPage {
             JLabel housingLocation = new JLabel(student.residentHallLocation);
             housingLocation.setBounds(250,200,175,25);
             panel.add(housingLocation);
+            
+            
+            // Creating Label for room type
+            JLabel bedLabel = new JLabel("Bed Space:");
+            bedLabel.setBounds(140,250,100,25);
+            panel.add(bedLabel);
+            
+            // Creating room type
+            JLabel bedSpace = new JLabel(student.bed);
+            bedSpace.setBounds(250,250,175,25);
+            panel.add(bedSpace);
         }
         
         
      // Creating Label for parking
         JLabel parkingLabel = new JLabel("Parking:");
-        parkingLabel.setBounds(140,300 + addToRow,100,25);
+        parkingLabel.setBounds(140,300 ,100,25);
         panel.add(parkingLabel);
         
      // Creating Label for parking
         JLabel parking = new JLabel(student.parking);
-        parking.setBounds(250,300 + addToRow,175,25);
+        parking.setBounds(250,300,175,25);
         panel.add(parking);
         
      // Creating Label for meal plan
         JLabel mealPlanLabel = new JLabel("Meal Plan:");
-        mealPlanLabel.setBounds(140,350 + addToRow,100,25);
+        mealPlanLabel.setBounds(140,350,100,25);
         panel.add(mealPlanLabel);
         
      // Creating meal plan
         JLabel mealPlan = new JLabel(student.mealPlan);
-        mealPlan.setBounds(250,350 + addToRow,175,25);
+        mealPlan.setBounds(250,350,175,25);
         panel.add(mealPlan);
 	
 		// Creating back button
@@ -132,12 +143,13 @@ public class ConfirmHousingPage {
 	    
 	    // Creating confirm information button
 	    JButton confirmHousingLeaseButton = new JButton("Confirm Housing Lease");
-	    confirmHousingLeaseButton.setBounds(100, 400 + addToRow, 300, 50);
+	    confirmHousingLeaseButton.setBounds(100, 400, 300, 50);
 	    panel.add(confirmHousingLeaseButton);
 	    confirmHousingLeaseButton.addActionListener(new ActionListener() {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				InsertStudent.InsertStudentIntoDB(student);
 				confirmHousingFrame.setVisible(false);
 				LandingPage.placeComponents();
 			}

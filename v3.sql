@@ -95,7 +95,8 @@ CREATE TABLE STUDENT(Num_of_courses int,
                     FOREIGN KEY(Plan_id) REFERENCES MEAL_PLAN(Plan_id)
 );
 
-CREATE TABLE PARKING(Car_model char(15),
+CREATE TABLE PARKING(Car_make char(15),
+				   Car_model char(15),
 				   Car_color char(10),
 				   Permit_id int NOT NULL AUTO_INCREMENT,
                    Plate_num char(7),

@@ -15,7 +15,7 @@ public class StudentInfo {
 		landingFrame.setVisible(false);
 		
 		JFrame studentInfoFrame = new JFrame("Student Information");
-		studentInfoFrame.setSize(550, 750);
+		studentInfoFrame.setSize(550, 850);
 		studentInfoFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// center the jframe on screen
@@ -68,90 +68,110 @@ public class StudentInfo {
         ssnInput.setBounds(200,175,200,25);
         panel.add(ssnInput);
         
+     // Creating Label for SSN
+        JLabel numClassesLabel = new JLabel("Number of Classes");
+        numClassesLabel.setBounds(75,225,125,25);
+        panel.add(numClassesLabel);
+        
+        // Creating the input for SSN
+        JTextField numClasses = new JTextField();
+        numClasses.setBounds(200,225,200,25);
+        panel.add(numClasses);
+        
         // Creating Label for # of credits
         JLabel creditsLabel = new JLabel("Number of Credits");
-        creditsLabel.setBounds(75,225,125,25);
+        creditsLabel.setBounds(75,275,125,25);
         panel.add(creditsLabel);
         
         // Creating the input for # of credits
         JTextField creditsInput = new JTextField();
-        creditsInput.setBounds(200,225,200,25);
+        creditsInput.setBounds(200,275,200,25);
         panel.add(creditsInput);
         
         // Creating Label for Student ID
         JLabel studentIDLabel = new JLabel("Student ID");
-        studentIDLabel.setBounds(75,275,125,25);
+        studentIDLabel.setBounds(75,325,125,25);
         panel.add(studentIDLabel);
         
         // Creating the input for Student ID
         JTextField studentIDInput = new JTextField();
-        studentIDInput.setBounds(200,275,200,25);
+        studentIDInput.setBounds(200,325,200,25);
         panel.add(studentIDInput);
+        
+     // Creating Label for Student ID
+        JLabel tuStatusLabel = new JLabel("TU Status");
+        tuStatusLabel.setBounds(75,375,125,25);
+        panel.add(tuStatusLabel);
+        
+        // Creating the input for Student ID
+        JTextField tuStatusInput = new JTextField();
+        tuStatusInput.setBounds(200,375,200,25);
+        panel.add(tuStatusInput);
         
         // Creating Label for email
         JLabel emailLabel = new JLabel("Email");
-        emailLabel.setBounds(75,325,125,25);
+        emailLabel.setBounds(75,425,125,25);
         panel.add(emailLabel);
         
         // Creating the input for email
         JTextField emailInput = new JTextField();
-        emailInput.setBounds(200,325,200,25);
+        emailInput.setBounds(200,425,200,25);
         panel.add(emailInput);
         
         // Creating Label for phone #
         JLabel phoneLabel = new JLabel("Phone");
-        phoneLabel.setBounds(75,375,125,25);
+        phoneLabel.setBounds(75,475,125,25);
         panel.add(phoneLabel);
         
         // Creating the input for phone #
         JTextField phoneInput = new JTextField();
-        phoneInput.setBounds(200,375,200,25);
+        phoneInput.setBounds(200,475,200,25);
         panel.add(phoneInput);
         
         // Creating Label for street
         JLabel streetLabel = new JLabel("Street");
-        streetLabel.setBounds(75,425,125,25);
+        streetLabel.setBounds(75,525,125,25);
         panel.add(streetLabel);
         
         // Creating the input for street
         JTextField streetInput = new JTextField();
-        streetInput.setBounds(200,425,200,25);
+        streetInput.setBounds(200,525,200,25);
         panel.add(streetInput);
         
         // Creating Label for city
         JLabel cityLabel = new JLabel("City");
-        cityLabel.setBounds(75,475,125,25);
+        cityLabel.setBounds(75,575,125,25);
         panel.add(cityLabel);
         
         // Creating the input for city
         JTextField cityInput = new JTextField();
-        cityInput.setBounds(200,475,200,25);
+        cityInput.setBounds(200,575,200,25);
         panel.add(cityInput);
         
         // Creating Label for state
         JLabel stateLabel = new JLabel("State");
-        stateLabel.setBounds(75,525,125,25);
+        stateLabel.setBounds(75,625,125,25);
         panel.add(stateLabel);
         
         // Creating the input for state
         JTextField stateInput = new JTextField();
-        stateInput.setBounds(200,525,200,25);
+        stateInput.setBounds(200,625,200,25);
         panel.add(stateInput);
         
         // Creating Label for zip
         JLabel zipLabel = new JLabel("Zip");
-        zipLabel.setBounds(75,575,125,25);
+        zipLabel.setBounds(75,675,125,25);
         panel.add(zipLabel);
         
         // Creating the input for zip
         JTextField zipInput = new JTextField();
-        zipInput.setBounds(200,575,200,25);
+        zipInput.setBounds(200,675,200,25);
         panel.add(zipInput);
         
         
         // Creating back button
         JButton studentButton = new JButton("Back");
-        studentButton.setBounds(100, 650, 100, 50);
+        studentButton.setBounds(100, 750, 100, 50);
         panel.add(studentButton);
         studentButton.addActionListener(new ActionListener() {
 
@@ -164,14 +184,14 @@ public class StudentInfo {
         
      // Creating confirm information button
         JButton confirmButton = new JButton("Confirm");
-        confirmButton.setBounds(300, 650, 100, 50);
+        confirmButton.setBounds(300, 750, 100, 50);
         panel.add(confirmButton);
         confirmButton.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				studentInfoFrame.setVisible(false);
-				Student student = new Student(fNameInput.getText(), lNameInput.getText(), ssnInput.getText(), creditsInput.getText(), studentIDInput.getText(), emailInput.getText(), phoneInput.getText(), streetInput.getText(), cityInput.getText(), stateInput.getText(), zipInput.getText());
+				Student student = new Student(fNameInput.getText(), lNameInput.getText(), ssnInput.getText(), numClasses.getText(), creditsInput.getText(), tuStatusInput.getText(), studentIDInput.getText(), emailInput.getText(), phoneInput.getText(), streetInput.getText(), cityInput.getText(), stateInput.getText(), zipInput.getText());
 //				Student student = new Student();
 				//System.out.print(student.firstName);
 				PickHousingOption.generateHousingOptionPage(studentInfoFrame, student);

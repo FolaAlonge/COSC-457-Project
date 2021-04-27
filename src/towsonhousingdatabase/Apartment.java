@@ -37,50 +37,62 @@ System.out.println("You made it to the option page");
         panel.add(label);
         
      // Creating Label for Hall options
+        JLabel lengthLabel = new JLabel("Lease Length");
+        lengthLabel.setBounds(120,100,125,25);
+        panel.add(lengthLabel);
+        
+        // Creating the input for Hall options
+        String length[] = {"Academic Year", "Semester"};
+        
+        JComboBox leaseLengthDropdown = new JComboBox(length);
+        leaseLengthDropdown.setBounds(250,100,175,25);
+        panel.add(leaseLengthDropdown);
+        
+     // Creating Label for Hall options
         JLabel apartmentOptionLabel = new JLabel("Apartment Options");
-        apartmentOptionLabel.setBounds(120,100,125,25);
+        apartmentOptionLabel.setBounds(120,150,125,25);
         panel.add(apartmentOptionLabel);
         
-        String apartments[] = {"Carroll Hall", "Marshall Hall", "Towson Run"};
+        String apartments[] = {"Towson Run", "Carroll Hall", "Marshall Hall", "10 West"};
         
         JComboBox apartmentDropdown = new JComboBox(apartments);
-        apartmentDropdown.setBounds(250,100,175,25);
+        apartmentDropdown.setBounds(250,150,175,25);
         panel.add(apartmentDropdown);
         
      // Creating Label for meal plan
         JLabel floorLabel = new JLabel("Floor");
-        floorLabel.setBounds(140,150,100,25);
+        floorLabel.setBounds(140,200,100,25);
         panel.add(floorLabel);
         
      // Creating the input for meal plan
         String floors[] = {"1", "2", "3", "4", "5"};
         
         JComboBox floorDropdown = new JComboBox(floors);
-        floorDropdown.setBounds(250,150,175,25);
+        floorDropdown.setBounds(250,200,175,25);
         panel.add(floorDropdown);
         
      // Creating Label for meal plan
         JLabel bedLabel = new JLabel("Bed Space:");
-        bedLabel.setBounds(140,200,100,25);
+        bedLabel.setBounds(140,250,100,25);
         panel.add(bedLabel);
         
      // Creating the input for meal plan
         String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
         
         JComboBox bedDropdown = new JComboBox(beds);
-        bedDropdown.setBounds(250,200,175,25);
+        bedDropdown.setBounds(250,250,175,25);
         panel.add(bedDropdown);
         
         // Creating Label for meal plan
         JLabel mealPlanLabel = new JLabel("Meal Plan:");
-        mealPlanLabel.setBounds(140,250,100,25);
+        mealPlanLabel.setBounds(140,300,100,25);
         panel.add(mealPlanLabel);
         
      // Creating the input for meal plan
         String mealPlan[] = {"None", "10 meals per Week", "14 meals per Week", "19 meals per Week", "21 meals per Week", "Unlimited meals per Week"};
         
         JComboBox mealPlanDropdown = new JComboBox(mealPlan);
-        mealPlanDropdown.setBounds(250,250,175,25);
+        mealPlanDropdown.setBounds(250,300,175,25);
         panel.add(mealPlanDropdown);
 	
 		// Creating back button
@@ -99,16 +111,17 @@ System.out.println("You made it to the option page");
 	    
 	 // Creating confirm information button
 	    JButton continueToParkingButton = new JButton("Continue to Parking");
-	    continueToParkingButton.setBounds(100, 300, 300, 50);
+	    continueToParkingButton.setBounds(100, 350, 300, 50);
 	    panel.add(continueToParkingButton);
 	    continueToParkingButton.addActionListener(new ActionListener() {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				student.setApartmentOption(apartmentDropdown.getSelectedItem());
-				student.setMealPlan(mealPlanDropdown.getSelectedItem());
+				student.setApartmentOption(apartmentDropdown.getSelectedItem(), apartmentDropdown.getSelectedIndex() + 1);
+				student.setMealPlan(mealPlanDropdown.getSelectedIndex(), mealPlanDropdown.getSelectedItem());
 				student.setBed(bedDropdown.getSelectedItem());
-				student.setFloor(floorDropdown.getSelectedItem());
+				student.setLeaseLength(leaseLengthDropdown.getSelectedItem());
+				student.setFloor(floorDropdown.getSelectedIndex() + 1);
 				apartmentFrame.setVisible(false);
 				Parking.generateParkingPage(apartmentFrame, student);
 			}

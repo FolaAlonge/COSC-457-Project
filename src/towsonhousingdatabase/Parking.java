@@ -15,7 +15,7 @@ public class Parking {
 		System.out.println("You made it to the option page");
 		
 		JFrame parkingFrame = new JFrame("Parking");
-		parkingFrame.setSize(550, 400);
+		parkingFrame.setSize(550, 500);
 		parkingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// center the jframe on screen

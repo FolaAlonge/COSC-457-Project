@@ -28,10 +28,6 @@ public class InsertStudent {
 			
 			if (student.hasParking) {
 				String insertCar = "INSERT INTO PARKING (Car_make, Car_model, Car_color, Plate_num, Student_id) VALUES ('"+ student.vehicleMake + "', '"+ student.vehicleModel + "', '" + student.vehicleColor + "', '" + student.plateNumber + "', '" + student.studentId +"')";
-			
-			
-			
-			
 				stmt.addBatch(insertCar);
 			}
 			stmt.executeBatch();

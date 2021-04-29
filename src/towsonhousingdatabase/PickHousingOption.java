@@ -57,8 +57,9 @@ public class PickHousingOption {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String[] beds = GetBeds.getBedsForStartingResidentHallFromDB();
 				housingOptionFrame.setVisible(false);
-				ResidentHall.generateResidentHallPage(housingOptionFrame, student);
+				ResidentHall.generateResidentHallPage(housingOptionFrame, student, beds);
 			}
         });
         
@@ -70,8 +71,9 @@ public class PickHousingOption {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String[] beds = GetBeds.getBedsForStartingApartmentFromDB();
 				housingOptionFrame.setVisible(false);
-				Apartment.generateApartmentPage(housingOptionFrame, student);
+				Apartment.generateApartmentPage(housingOptionFrame, student, beds);
 			}
         });
 	}

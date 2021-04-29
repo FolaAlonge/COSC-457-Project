@@ -1,1 +1,0 @@
-SELECT hall_bed.Bed_id FROM hall_bed WHERE NOT EXISTS (SELECT hall_bed.Bed_id FROM lease where hall_bed.Bed_id=lease.Bed_id);

@@ -1,6 +1,8 @@
 package towsonhousingdatabase;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -11,7 +13,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class ResidentHall {
-	static void generateResidentHallPage(JFrame housingOptionFrame, Student student) {
+	static void generateResidentHallPage(JFrame housingOptionFrame, Student student, String[] beds) {
 		System.out.println("You made it to the option page");
 		
 		JFrame residentHallFrame = new JFrame("Resident Hall");
@@ -25,11 +27,11 @@ public class ResidentHall {
 		residentHallFrame.add(panel);
 		
 		
-		setUpPage(residentHallFrame, housingOptionFrame, panel, student);
+		setUpPage(residentHallFrame, housingOptionFrame, panel, student, beds);
 		residentHallFrame.setVisible(true);
 	}
 
-	public static void setUpPage(JFrame residentHallFrame, JFrame housingOptionFrame, JPanel panel, Student student) {
+	public static void setUpPage(JFrame residentHallFrame, JFrame housingOptionFrame, JPanel panel, Student student, String[] beds) {
 		panel.setLayout(null);
 		
 		// Creating Label for Resident Hall
@@ -66,11 +68,12 @@ public class ResidentHall {
         panel.add(hallOptionLabel);
         
         // Creating the input for Hall options
-        String halls[] = {"Glen Complex", "Newell Hall", "Richmond Hall"};
+        String halls[] = {"Glen Complex", "Newell Hall", "Stephens Hall"};
         
         JComboBox hallDropdown = new JComboBox(halls);
         hallDropdown.setBounds(250,200,175,25);
         panel.add(hallDropdown);
+        
         
      // Creating Label for meal plan
         JLabel floorLabel = new JLabel("Floor");
@@ -90,9 +93,9 @@ public class ResidentHall {
         panel.add(bedLabel);
         
      // Creating the input for meal plan
-        String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
+       // String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
         
-        JComboBox bedDropdown = new JComboBox(beds);
+        JComboBox<String> bedDropdown = new JComboBox(beds);
         bedDropdown.setBounds(250,300,175,25);
         panel.add(bedDropdown);
         
@@ -107,6 +110,7 @@ public class ResidentHall {
         JComboBox mealPlanDropdown = new JComboBox(mealPlan);
         mealPlanDropdown.setBounds(250,350,175,25);
         panel.add(mealPlanDropdown);
+        student.setMealPlan(1, "10 meals per Week");
 	
 		// Creating back button
 	    JButton backButton = new JButton("Back");
@@ -120,6 +124,43 @@ public class ResidentHall {
 				housingOptionFrame.setVisible(true);
 			}
 	    });
+	    
+	    hallDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	System.out.println("Changed the hall selected");
+                	String[] beds = GetBeds.getBedsForResidentHallFromDB(hallDropdown.getSelectedItem(), floorDropdown.getSelectedIndex() +1);
+                	bedDropdown.removeAllItems();
+                	System.out.println(beds.length);
+                	for (int i = 0; i < beds.length; i++) {
+                		bedDropdown.addItem(beds[i]);
+                	}
+                }
+            }
+        });
+	    
+	    
+	    floorDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	System.out.println("Changed the floor selected");
+                	String[] beds = GetBeds.getBedsForResidentHallFromDB(hallDropdown.getSelectedItem(), floorDropdown.getSelectedIndex() +1);
+                	bedDropdown.removeAllItems();
+                	System.out.println(beds.length);
+                	for (int i = 0; i < beds.length; i++) {
+                		bedDropdown.addItem(beds[i]);
+                	}
+                }
+            }
+        });
+	    
+	    mealPlanDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	student.setMealPlan(mealPlanDropdown.getSelectedIndex() + 1, mealPlanDropdown.getSelectedItem());
+                }
+            }
+        });
 	    
 	    
 	 // Creating confirm information button
@@ -135,7 +176,7 @@ public class ResidentHall {
 				student.setBed(bedDropdown.getSelectedItem());
 				student.setLeaseLength(leaseLengthDropdown.getSelectedItem());
 				student.setFloor(floorDropdown.getSelectedIndex() + 1);
-				student.setMealPlan(mealPlanDropdown.getSelectedIndex(), mealPlanDropdown.getSelectedItem());
+				
 				residentHallFrame.setVisible(false);
 				Parking.generateParkingPage(residentHallFrame, student);
 			}

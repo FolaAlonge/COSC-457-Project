@@ -2,6 +2,8 @@ package towsonhousingdatabase;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -10,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class Apartment {
-	static void generateApartmentPage(JFrame housingOptionFrame, Student student) {
+	static void generateApartmentPage(JFrame housingOptionFrame, Student student, String[] beds) {
 System.out.println("You made it to the option page");
 		
 		JFrame apartmentFrame = new JFrame("Resident Hall");
@@ -24,10 +26,10 @@ System.out.println("You made it to the option page");
 		apartmentFrame.add(panel);
 		
 		
-		setUpPage(apartmentFrame, housingOptionFrame, panel, student);
+		setUpPage(apartmentFrame, housingOptionFrame, panel, student, beds);
 		apartmentFrame.setVisible(true);
 	}
-	public static void setUpPage(JFrame apartmentFrame, JFrame housingOptionFrame, JPanel panel, Student student) {
+	public static void setUpPage(JFrame apartmentFrame, JFrame housingOptionFrame, JPanel panel, Student student, String[] beds) {
 		panel.setLayout(null);
 
 		
@@ -53,7 +55,7 @@ System.out.println("You made it to the option page");
         apartmentOptionLabel.setBounds(120,150,125,25);
         panel.add(apartmentOptionLabel);
         
-        String apartments[] = {"Towson Run", "Carroll Hall", "Marshall Hall", "10 West"};
+        String apartments[] = {"Carroll Hall", "Marshall Hall", "10 West", "Towson Run"};
         
         JComboBox apartmentDropdown = new JComboBox(apartments);
         apartmentDropdown.setBounds(250,150,175,25);
@@ -77,9 +79,9 @@ System.out.println("You made it to the option page");
         panel.add(bedLabel);
         
      // Creating the input for meal plan
-        String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
+        //String beds[] = {"CH-101A", "CH-101B", "CH-201A", "CH-201B", "CH-201C", "CH-201D"};
         
-        JComboBox bedDropdown = new JComboBox(beds);
+        JComboBox<String> bedDropdown = new JComboBox(beds);
         bedDropdown.setBounds(250,250,175,25);
         panel.add(bedDropdown);
         
@@ -94,6 +96,8 @@ System.out.println("You made it to the option page");
         JComboBox mealPlanDropdown = new JComboBox(mealPlan);
         mealPlanDropdown.setBounds(250,300,175,25);
         panel.add(mealPlanDropdown);
+        student.setMealPlan(0, "None");
+        
 	
 		// Creating back button
 	    JButton backButton = new JButton("Back");
@@ -109,6 +113,43 @@ System.out.println("You made it to the option page");
 	    });
 	    
 	    
+	    apartmentDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	System.out.println("Changed the hall selected");
+                	String[] beds = GetBeds.getBedsForApartmentFromDB(apartmentDropdown.getSelectedItem(), floorDropdown.getSelectedIndex() +1);
+                	bedDropdown.removeAllItems();
+                	System.out.println(beds.length);
+                	for (int i = 0; i < beds.length; i++) {
+                		bedDropdown.addItem(beds[i]);
+                	}
+                }
+            }
+        });
+	    
+	    floorDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	System.out.println("Changed the floor selected");
+                	String[] beds = GetBeds.getBedsForApartmentFromDB(apartmentDropdown.getSelectedItem(), floorDropdown.getSelectedIndex() +1);
+                	bedDropdown.removeAllItems();
+                	System.out.println(beds.length);
+                	for (int i = 0; i < beds.length; i++) {
+                		bedDropdown.addItem(beds[i]);
+                	}
+                }
+            }
+        });
+	    
+	    mealPlanDropdown.addItemListener(new ItemListener() {
+            public void itemStateChanged(ItemEvent e) {
+                if (e.getStateChange() == ItemEvent.SELECTED) {
+                	student.setMealPlan(mealPlanDropdown.getSelectedIndex(), mealPlanDropdown.getSelectedItem());
+                }
+            }
+        });
+	    
+	    
 	 // Creating confirm information button
 	    JButton continueToParkingButton = new JButton("Continue to Parking");
 	    continueToParkingButton.setBounds(100, 350, 300, 50);
@@ -118,7 +159,7 @@ System.out.println("You made it to the option page");
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				student.setApartmentOption(apartmentDropdown.getSelectedItem(), apartmentDropdown.getSelectedIndex() + 1);
-				student.setMealPlan(mealPlanDropdown.getSelectedIndex(), mealPlanDropdown.getSelectedItem());
+				
 				student.setBed(bedDropdown.getSelectedItem());
 				student.setLeaseLength(leaseLengthDropdown.getSelectedItem());
 				student.setFloor(floorDropdown.getSelectedIndex() + 1);

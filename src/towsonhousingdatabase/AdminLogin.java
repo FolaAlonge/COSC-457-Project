@@ -1,5 +1,6 @@
 package towsonhousingdatabase;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class AdminLogin {
@@ -49,22 +51,22 @@ public class AdminLogin {
         
         // Creating Label for username
         JLabel usernameLabel = new JLabel("Username");
-        usernameLabel.setBounds(170,75,125,25);
+        usernameLabel.setBounds(170,100,125,25);
         panel.add(usernameLabel);
         
         // Creating the input for username
         JTextField usernameInput = new JTextField();
-        usernameInput.setBounds(170,100,200,25);
+        usernameInput.setBounds(170,125,200,25);
         panel.add(usernameInput);
         
         // Creating Label for password
         JLabel passwordLabel = new JLabel("Password");
-        passwordLabel.setBounds(170,125,125,25);
+        passwordLabel.setBounds(170,150,125,25);
         panel.add(passwordLabel);
         
         // Creating the input for password
-        JTextField passwordInput = new JTextField();
-        passwordInput.setBounds(170,150,200,25);
+        JPasswordField passwordInput = new JPasswordField();
+        passwordInput.setBounds(170,175,200,25);
         panel.add(passwordInput);
         
         // Creating login button
@@ -75,8 +77,20 @@ public class AdminLogin {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				adminLoginFrame.setVisible(false);
-				AdminHousingPage.generateAdminHousingPage(adminLoginFrame);
+				boolean correct = LoginDB.checkAuthentication(usernameInput.getText(), passwordInput.getPassword());
+				System.out.println(correct);
+				if (correct) {
+					adminLoginFrame.setVisible(false);
+					AdminHousingPage.generateAdminHousingPage(adminLoginFrame);
+				} else {
+					// Creating JLabel
+			        JLabel wrongLabel = new JLabel("Username or Password is Incorrect");
+			        wrongLabel.setForeground(Color.RED);
+			        wrongLabel.setBounds(160,45, 250,25);
+			        panel.add(wrongLabel);
+			        
+				}
+				landingFrame.repaint();
 			}
 	    });
 	}

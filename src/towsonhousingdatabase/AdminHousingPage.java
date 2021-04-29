@@ -13,7 +13,7 @@ public class AdminHousingPage {
 		System.out.println("You make it to the admin housing locations");
 		
 		JFrame adminHousingFrame = new JFrame("Student Information");
-		adminHousingFrame.setSize(550, 400);
+		adminHousingFrame.setSize(550, 475);
 		adminHousingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// center the jframe on screen
@@ -65,7 +65,8 @@ public class AdminHousingPage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getResidentHallInfoAndStudentsFromDB(glenComplexButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	    
@@ -78,20 +79,22 @@ public class AdminHousingPage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getResidentHallInfoAndStudentsFromDB(newellHallButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	    
 	    // Creating richmond hall button
-	    JButton richmondHallButton = new JButton("Richmond Hall");
-	    richmondHallButton.setBounds(75, 250, 125, 50);
-	    panel.add(richmondHallButton);
-	    richmondHallButton.addActionListener(new ActionListener() {
+	    JButton stephensHallButton = new JButton("Stephens Hall");
+	    stephensHallButton.setBounds(75, 250, 125, 50);
+	    panel.add(stephensHallButton);
+	    stephensHallButton.addActionListener(new ActionListener() {
 	
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getResidentHallInfoAndStudentsFromDB(stephensHallButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	    
@@ -104,7 +107,9 @@ public class AdminHousingPage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getApartmentAndStudentsFromDB(carrollHallButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	    
@@ -117,7 +122,8 @@ public class AdminHousingPage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getApartmentAndStudentsFromDB(marshallHallButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	    
@@ -130,7 +136,22 @@ public class AdminHousingPage {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				adminHousingFrame.setVisible(false);
-				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getApartmentAndStudentsFromDB(towsonRunButton.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
+			}
+	    });
+	    
+	 // Creating richmond hall button
+	    JButton west10Button = new JButton("10 West");
+	    west10Button.setBounds(325, 325, 125, 50);
+	    panel.add(west10Button);
+	    west10Button.addActionListener(new ActionListener() {
+	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				adminHousingFrame.setVisible(false);
+				AdminSpecificHousingDB houseInfo = AdminHousingDB.getApartmentAndStudentsFromDB(west10Button.getText());
+				AdminSpecificHousing.generateAdminSpecificHousingPage(adminHousingFrame, houseInfo);
 			}
 	    });
 	}

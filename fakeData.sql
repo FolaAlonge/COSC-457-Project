@@ -16,9 +16,9 @@ INSERT INTO HOUSING VALUES
 (7, 'Henry Weeks', '2021-2022', '123 Stephenson Av', 'Towson', 21204, 'MD');
 
 INSERT INTO RESIDENT_HALL VALUES
-(5, '410-704-5702', 15, 'Glen Complex'),
-(6, '410-704-3997', 20, 'Newell Hall'),
-(7, '410-704-4565', 12, 'Stephens Hall');
+(5, '410-704-5702', 315, 'Glen Complex'),
+(6, '410-704-3997', 225, 'Newell Hall'),
+(7, '410-704-4565', 400, 'Stephens Hall');
 
 
 INSERT INTO HALL_BED VALUES
@@ -60,10 +60,10 @@ INSERT INTO HALL_BED VALUES
 (3, 303, 3981, 4, 7, 'SH-303D');
 
 INSERT INTO APARTMENT VALUES
-(1, '410 704 2000', 15, 'Towson Run'),
-(2, '410-704-6991', 20, 'Carroll Hall'),
-(3, '410-704-6899', 12, 'Marshall Hall'),
-(4, '410-704-2516', 10, '10 West');
+(1, '410 704 2000', 205, 'Towson Run'),
+(2, '410-704-6991', 205, 'Carroll Hall'),
+(3, '410-704-6899', 100, 'Marshall Hall'),
+(4, '410-704-2516', 315, '10 West');
 
 INSERT INTO APART_BED VALUES
 (1, 101, 4606, 1, 1, 1, 'TR-101A'),
@@ -99,7 +99,7 @@ INSERT INTO APART_BED VALUES
 (3, 303, 4853, 2, 1, 4, '10W-303B');
 
 INSERT INTO MEAL_PLAN VALUES 
-(0, 0, ''),
+(0, 0, 'None'),
 (2450, 1, '10 Meal Per Week'),
 (2700, 2, '14 Meal Per Week'),
 (3000, 3, '19 Meal Per Week'),

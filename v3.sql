@@ -25,7 +25,7 @@ CREATE TABLE HOUSING(Housing_num int,
                    CREATE TABLE RESIDENT_HALL(
 				   Hall_num int,
                    Phone_num char(16),
-                   Num_of_rooms int,
+                   Num_of_beds int,
                    Resident_hall_name char(15),
                    PRIMARY KEY(Hall_num),
                    FOREIGN KEY (Hall_num) REFERENCES HOUSING(Housing_num)
@@ -44,7 +44,7 @@ CREATE TABLE HALL_BED(Hall_floor int,
 CREATE TABLE APARTMENT(
 				   Apart_num int,
                    Phone_num char(16),
-                   Num_of_rooms int,
+                   Num_of_beds int,
                    Apartment_name char(15),
                    PRIMARY KEY(Apart_num),
                    FOREIGN KEY (Apart_num) REFERENCES HOUSING(Housing_num)

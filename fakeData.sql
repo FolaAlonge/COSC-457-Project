@@ -4,7 +4,9 @@ INSERT INTO TUH_USER VALUES
 ('Jane', 'Snow', 'jsnow2@students.towson.edu', '432-234-9342', '134342323', '123 Walnut Drive', 'Baltimore', '21233', 'MD'),
 ('Eric', 'Walters', 'ewalters1@students.towson.edu', '444-482-1234', '114245324', '123 Smith Street', 'Baltimore', '21233', 'MD'),
 ('Will', 'Pain', 'wpain2@students.towson.edu', '483-229-0983', '833723231', '123 Bell Drive', 'Baltimore', '21233', 'MD'),
-('Jim', 'Palmer', 'jpalmer2@students.towson.edu', '410-064-9873', '523833292', '334 Start Drive', 'Clarksville', '21723', 'MD');
+('Jeremiah', 'Failla', 'jfaill2@students.towson.edu', '410-064-9873', '523833292', '11416 Bell Road', 'Whaleyville', '21723', 'MD'),
+('Folayinka', 'Alonge', 'falong2@students.towson.edu', '410-322-8432', '973432323', '389 Elk Drive', 'Towson', '21233', 'MD'),
+('Jaico', 'Nakpil', 'jnakpi1@students.towson.edu', '410-322-8432', '876432331', '972 Dove Street', 'Towson', '21233', 'MD');
 
 INSERT INTO HOUSING VALUES 
 (1, 'Jenny McHill', '2021-2022', '123 Towson Drive', 'Towson', 21204, 'MD'),
@@ -124,7 +126,10 @@ INSERT INTO PARKING (Car_make, Car_model, Car_color, Plate_num, Student_id) VALU
 ('Toyota', 'Camry', 'Silver', 'FE26442', '1243526'),
 ('Honda', 'CRV', 'Green',  'BP32563', '6293221');
 
-INSERT INTO TU_ADMIN (Username, Passw, Tu_position, Ssn) VALUES ('jpalmer2', 'password', 'Admin', '523833292');
+INSERT INTO TU_ADMIN (Username, Passw, Tu_position, Ssn) VALUES 
+('jfaill2', 'password', 'Admin', '523833292'),
+('jpalmer2', 'password', 'Admin', '973432323'),
+('jpalmer2', 'password', 'Admin', '876432331');
 
 
 

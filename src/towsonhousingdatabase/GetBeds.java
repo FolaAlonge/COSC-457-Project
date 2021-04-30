@@ -13,7 +13,7 @@ public class GetBeds {
 		ArrayList<String> beds = new ArrayList<String>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuhousing", "root", "2013Orioles");
+			Connection con = DriverManager.getConnection("jdbc:mysql://cosc457housingdb.mysql.database.azure.com/tuhousing", "cosc457Admin@cosc457housingdb", "cosc457Project");
 			System.out.println("Database connection successful");
 			Statement stmt = con.createStatement();
 			
@@ -39,7 +39,7 @@ public class GetBeds {
 		ArrayList<String> beds = new ArrayList<String>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuhousing", "root", "2013Orioles");
+			Connection con = DriverManager.getConnection("jdbc:mysql://cosc457housingdb.mysql.database.azure.com/tuhousing", "cosc457Admin@cosc457housingdb", "cosc457Project");
 			System.out.println("Database connection successful");
 			Statement stmt = con.createStatement();
 			
@@ -65,7 +65,7 @@ public class GetBeds {
 		ArrayList<String> beds = new ArrayList<String>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuhousing", "root", "2013Orioles");
+			Connection con = DriverManager.getConnection("jdbc:mysql://cosc457housingdb.mysql.database.azure.com/tuhousing", "cosc457Admin@cosc457housingdb", "cosc457Project");
 			System.out.println("Database connection successful");
 			Statement stmt = con.createStatement();
 		
@@ -90,7 +90,7 @@ public class GetBeds {
 		ArrayList<String> beds = new ArrayList<String>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/tuhousing", "root", "2013Orioles");
+			Connection con = DriverManager.getConnection("jdbc:mysql://cosc457housingdb.mysql.database.azure.com/tuhousing", "cosc457Admin@cosc457housingdb", "cosc457Project");
 			System.out.println("Database connection successful");
 			Statement stmt = con.createStatement();
 		

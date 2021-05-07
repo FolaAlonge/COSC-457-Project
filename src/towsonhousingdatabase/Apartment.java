@@ -55,7 +55,7 @@ System.out.println("You made it to the option page");
         apartmentOptionLabel.setBounds(120,150,125,25);
         panel.add(apartmentOptionLabel);
         
-        String apartments[] = {"Carroll Hall", "Marshall Hall", "10 West", "Towson Run"};
+        String apartments[] = {"Towson Run", "Carroll Hall", "Marshall Hall", "10 West"};
         
         JComboBox apartmentDropdown = new JComboBox(apartments);
         apartmentDropdown.setBounds(250,150,175,25);

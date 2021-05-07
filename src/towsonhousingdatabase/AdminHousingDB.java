@@ -51,6 +51,7 @@ public class AdminHousingDB {
 	
 	public static AdminSpecificHousingDB getApartmentAndStudentsFromDB(String building) {
 		ArrayList<String> students = new ArrayList<String>();
+		ArrayList<String> ids = new ArrayList<String>();
 		AdminSpecificHousingDB house = new AdminSpecificHousingDB();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -68,16 +69,21 @@ public class AdminHousingDB {
 			String query2 = "SELECT Fname, Lname, Student_id, Apartment_name, Num_of_beds FROM tuh_user, student, lease, housing, apartment where tuh_user.Ssn=student.Ssn AND lease.Lease_num=student.Lease_num AND housing.Housing_num=lease.Housing_num AND housing.Housing_num=apartment.Apart_num AND apartment.Apartment_name='" + building + "'";
 					
 		
-			ResultSet rs = stmt.executeQuery(query2);
+			ResultSet rs2 = stmt.executeQuery(query2);
 			
-			while (rs.next()) {
-				house.setBuildingName(rs.getString("Apartment_name"));
-				String name = rs.getString("Fname") + rs.getString("Lname");
+			while (rs2.next()) {
+				house.setBuildingName(rs2.getString("Apartment_name"));
+				String name = rs2.getString("Fname") + " " + rs2.getString("Lname");
 				students.add(name);
+				String id = rs2.getString("Student_id");
+				ids.add(id);
 			}
 			String[] array = students.toArray(new String[students.size()]);
+			String[] housingStudentsIds = ids.toArray(new String[ids.size()]);
+			
 			house.setType(false);
 			house.setStudents(array);
+			house.setStudentsIDs(housingStudentsIds);
 			house.setNumOfBedsLeft();
 			con.close();
 		} catch (SQLException | ClassNotFoundException e) {

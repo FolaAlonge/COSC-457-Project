@@ -31,7 +31,7 @@ public class AdminSpecificHousing {
 		
 		// Creating JLabel
         JLabel housingLocationLabel = new JLabel(houseInfo.buildingName);
-        housingLocationLabel.setBounds(250, 10,160,25);
+        housingLocationLabel.setBounds(300, 10,160,25);
         panel.add(housingLocationLabel);
         
         // Creating back button
@@ -49,27 +49,27 @@ public class AdminSpecificHousing {
         
         // Creating Label for price
         JLabel numberBedLabel = new JLabel("Number of Beds:");
-        numberBedLabel.setBounds(180,50,150,25);
+        numberBedLabel.setBounds(240,50,150,25);
         panel.add(numberBedLabel);
         
         // Creating Label for actual price
         JLabel numberBeds = new JLabel(String.valueOf(houseInfo.numOfBeds));
-        numberBeds.setBounds(340,50,125,25);
+        numberBeds.setBounds(400,50,125,25);
         panel.add(numberBeds);
         
         // Creating Label for price
         JLabel numberBedsLeftLabel = new JLabel("Number of Beds Left:");
-        numberBedsLeftLabel.setBounds(180,75,150,25);
+        numberBedsLeftLabel.setBounds(240,75,150,25);
         panel.add(numberBedsLeftLabel);
         
         // Creating Label for actual price
         JLabel numberBedsLeft = new JLabel(String.valueOf(houseInfo.numOfBedsLeft));
-        numberBedsLeft.setBounds(340,75,125,25);
+        numberBedsLeft.setBounds(400,75,125,25);
         panel.add(numberBedsLeft);
         
         // Creating Label for 
         JLabel location = new JLabel("Students In Housing Location");
-        location.setBounds(220,120,200,25);
+        location.setBounds(260,120,200,25);
         panel.add(location);
         
         String[] names = houseInfo.students;

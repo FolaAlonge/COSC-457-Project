@@ -64,6 +64,19 @@ public class LandingPage {
 			}
         });
         
+     // Creating student housing button 
+        JButton studentCancelHousingButton = new JButton("Student Cancel Housing");
+        studentCancelHousingButton.setBounds(50, 175, 200, 50);
+        panel.add(studentCancelHousingButton);
+        studentCancelHousingButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.setVisible(false);
+				StudentCancelHousingPage.generateHousingOptionPage(frame);
+			}
+        });
+        
         // Creating admin button
         JButton adminButton = new JButton("Admin");
         adminButton.setBounds(300, 100, 200, 50);

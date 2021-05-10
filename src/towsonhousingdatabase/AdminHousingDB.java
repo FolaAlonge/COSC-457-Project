@@ -81,6 +81,7 @@ public class AdminHousingDB {
 			String[] array = students.toArray(new String[students.size()]);
 			String[] housingStudentsIds = ids.toArray(new String[ids.size()]);
 			
+			
 			house.setType(false);
 			house.setStudents(array);
 			house.setStudentsIDs(housingStudentsIds);
@@ -101,7 +102,7 @@ public class AdminHousingDB {
 			System.out.println("Database connection successful");
 			Statement stmt = con.createStatement();
 			
-			String query = "SELECT Fname, Lname, tuh_user.Ssn, email, Student_id, tuh_user.Phone_num, tuh_user.Street_address, tuh_user.City, tuh_user.State, tuh_user.Zip, Num_of_courses, Credits, Tu_Status, lease.Lease_num, Resident_hall_name, lease.Bed_id, Want_parking, Meal_name FROM tuh_user, student, meal_plan, lease, resident_hall WHERE tuh_user.Ssn=student.Ssn AND student.Student_id='" + id + "' AND student.Plan_id=meal_plan.Plan_id AND student.Lease_num=lease.Lease_num AND lease.Housing_num=resident_hall.Hall_num;  ";
+			String query = "SELECT Fname, Lname, tuh_user.Ssn, email, Student_id, tuh_user.Phone_num, tuh_user.Street_address, tuh_user.City, tuh_user.State, tuh_user.Zip, Num_of_courses, Credits, Tu_Status, lease.Lease_num, Resident_hall_name, lease.Bed_id, Want_parking, Meal_name FROM tuh_user, student, meal_plan, lease, resident_hall WHERE tuh_user.Ssn=student.Ssn AND student.Student_id='" + id + "' AND student.Plan_id=meal_plan.Plan_id AND student.Lease_num=lease.Lease_num AND lease.Housing_num=resident_hall.Hall_num";
 		
 			ResultSet rs = stmt.executeQuery(query);
 			
@@ -122,6 +123,57 @@ public class AdminHousingDB {
 				String zip = rs.getString("Zip");
 				String bed = rs.getString("Bed_id");
 				String housingBuilding = rs.getString("Resident_hall_name");
+				String meal = rs.getString("Meal_name");
+				if (meal == "") {
+					meal = "None";
+				}
+				int parkingStatus = rs.getInt("Want_parking");
+				String parking = "";
+				if (parkingStatus == 1) {
+					parking = "Yes";
+				} else {
+					parking = "No";
+				}
+				student = new AdminStudent(first, last, ssn, lease_num, numClass, credits, tuStatus, ids, email, phone, street, city, state, zip, bed, housingBuilding, meal, parking);
+			}
+			
+			
+			con.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return student;
+	}
+	public static AdminStudent getApartmentStudentFromDB(String id) {
+		AdminStudent student = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://cosc457housingdb.mysql.database.azure.com/tuhousing", "cosc457Admin@cosc457housingdb", "cosc457Project");
+			System.out.println("Database connection successful");
+			Statement stmt = con.createStatement();
+			
+			String query = "SELECT Fname, Lname, tuh_user.Ssn, email, Student_id, tuh_user.Phone_num, tuh_user.Street_address, tuh_user.City, tuh_user.State, tuh_user.Zip, Num_of_courses, Credits, Tu_Status, lease.Lease_num, Apartment_name, lease.Bed_id, Want_parking, Meal_name FROM tuh_user, student, meal_plan, lease, apartment WHERE tuh_user.Ssn=student.Ssn AND student.Student_id='" + id + "' AND student.Plan_id=meal_plan.Plan_id AND student.Lease_num=lease.Lease_num AND lease.Housing_num=apartment.Apart_num";
+		
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				String first = rs.getString("Fname");
+				String last = rs.getString("Lname");
+				int numClass = rs.getInt("Num_of_courses");
+				int credits = rs.getInt("Credits");
+				int lease_num = rs.getInt("Lease_num");
+				String ssn = rs.getString("Ssn");
+				String tuStatus = rs.getString("Tu_Status");
+				String ids = rs.getString("Student_id");
+				String email = rs.getString("email");
+				String phone = rs.getString("Phone_num");
+				String street = rs.getString("Street_address");
+				String city = rs.getString("City");
+				String state = rs.getString("State");
+				String zip = rs.getString("Zip");
+				String bed = rs.getString("Bed_id");
+				String housingBuilding = rs.getString("Apartment_name");
 				String meal = rs.getString("Meal_name");
 				if (meal == "") {
 					meal = "None";

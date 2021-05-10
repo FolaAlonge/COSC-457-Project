@@ -96,7 +96,7 @@ public class AdminSpecificHousing {
         				if (houseInfo.hall) {
         					student = AdminHousingDB.getResidentHallStudentFromDB(ids);
         				} else {
-        					student = null;
+        					student = AdminHousingDB.getApartmentStudentFromDB(ids);
         				}
         				
         				adminSpecificHousingFrame.setVisible(false);
@@ -118,7 +118,7 @@ public class AdminSpecificHousing {
         				if (houseInfo.hall) {
         					student = AdminHousingDB.getResidentHallStudentFromDB(ids);
         				} else {
-        					student = null;
+        					student = AdminHousingDB.getApartmentStudentFromDB(ids);
         				}
         				adminSpecificHousingFrame.setVisible(false);
         				AdminStudentInfo.generateAdminStudentInfoPage(adminSpecificHousingFrame, student, adminHousingFrame);
@@ -139,7 +139,7 @@ public class AdminSpecificHousing {
         				if (houseInfo.hall) {
         					student = AdminHousingDB.getResidentHallStudentFromDB(ids);
         				} else {
-        					student = null;
+        					student = AdminHousingDB.getApartmentStudentFromDB(ids);
         				}
         				adminSpecificHousingFrame.setVisible(false);
         				AdminStudentInfo.generateAdminStudentInfoPage(adminSpecificHousingFrame, student, adminHousingFrame);
